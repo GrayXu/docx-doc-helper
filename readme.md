@@ -6,6 +6,7 @@ Hey, star this repo, which provides lot high-level utils based on [*python-docx*
 
 feature:
 1. table text replacement
+2. replace text in paragraphs by a given .csv file
 
 ## dependency
 
