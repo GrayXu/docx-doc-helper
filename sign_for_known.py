@@ -18,7 +18,7 @@ with open('desktop/7.6.csv') as file:
         count += 1
         if row[3] in known_pattern:
             found.append(count)
-        row[5] = '采纳'
+            row[5] = '采纳'
         data.append(row)
         
 with open('desktop/7.6_n.csv', 'w') as file:
