@@ -1,0 +1,5 @@
+desktop
+.ipynb_checkpoints/
+*.csv
+*.docx
+*.ipynb
