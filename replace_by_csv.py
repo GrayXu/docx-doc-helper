@@ -11,7 +11,9 @@ note: 表格等序号不统一问题，暂时仅支持正文
 
 import csv
 import docx
+import utils
 from tqdm import tqdm
+
 
 # config
 in_path = '/home/gray/desktop/7.1.docx'
@@ -19,46 +21,6 @@ out_path = '/home/gray/desktop/out.docx'
 csv_path = '/home/gray/desktop/dell.csv'
 
 doc = docx.Document(in_path)
-
-
-def is_sec_pattern(ori):
-    '''
-    A string is in section title pattern
-    '''
-    ori = ori.strip()
-    if len(ori) != 0 and ori[0].isdigit():  # first char is a digit
-        for char in ori[1:]:
-            if char == '.':
-                return True
-            elif char.isdigit():
-                continue
-            else:
-                break
-    return False
-
-def get_sec_num(ori):
-    '''
-    get section number:   '23.1 haha' -> '23.1'
-    '''
-    ori = ori.strip()
-    flag = False  # a flag status for pattern detect
-    
-    if len(ori) != 0 and ori[0].isdigit():  # first char is a digit
-        for char_index in range(len(ori)-1):
-            char = ori[1+char_index]  # jump the first one
-            if char == ' ' and flag:  # find space end
-                return ori[:char_index+1]
-            elif char == '.':
-                flag = True
-            elif char.isdigit():  # keep move
-                continue
-            else:  # a normal char
-                if flag:
-                    return ori[:char_index+1]
-                else: 
-                    break
-    return None
-
 
 replace = {}
 with open(csv_path) as file:
@@ -69,7 +31,7 @@ with open(csv_path) as file:
         if count <= 3:
             continue
         
-        sec_num = get_sec_num(row[1])       
+        sec_num = utils.get_sec_num(row[1])       
         
         if sec_num is not None:
             # tmp solution: self-increment for a new added-in section
@@ -91,7 +53,7 @@ found = {}
 now_sec = ''
 for para in tqdm(list(doc.paragraphs)):
     # update sec_num
-    sec_num = get_sec_num(para.text)
+    sec_num = utils.get_sec_num(para.text)
     if sec_num is not None:
         now_sec = sec_num
     
