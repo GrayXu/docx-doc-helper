@@ -3,3 +3,4 @@ desktop
 *.csv
 *.docx
 *.ipynb
+__pycache__/

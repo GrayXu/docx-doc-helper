@@ -9,6 +9,7 @@ file | feature
 table_cell_replace.py | table text replacement
 replace_by_csv.py | replace text in paragraphs by a given .csv file
 sign_for_known.py | sign all items in the table for known patterns
+stat.ipynb | gen stat img from \*.xlsx
 
 check details in header comments of \*.py files.
 
