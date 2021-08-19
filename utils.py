@@ -18,12 +18,12 @@ def replace_para_text(para, source, target):
     '''
     替换para的字体，但不修改字体（取最后一个run）
     '''
-    # method below will break style!
-    # para.text = str(para.text).replace(source, target)
+    # method below may break style!
+#     para.text = str(para.text).replace(source, target)
     para_text = str(para.text).replace(source, target)
     for run in para.runs:
         run.text = ''
-    para.runs[-1] = para_text
+    para.runs[0].text = para_text
     
     
 def get_sec_num(ori):
