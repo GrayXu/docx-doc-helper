@@ -11,8 +11,12 @@ def find_by_regex(regex, string, from_head=False):
         result = re.search(regex, string)  # find this pattern from head
     return True if result is not None else False
 
+def contain_sec_num(data):
+    return utils.find_by_regex("[0-9]+\.+[0-9]",data)
+
 def get_style_name(style):
     return str(style).split("\'")[1]
+
 
 def replace_para_text(para, source, target):
     '''
@@ -25,10 +29,19 @@ def replace_para_text(para, source, target):
         run.text = ''
     para.runs[0].text = para_text
     
+pattern = re.compile(r'[0-9]+(\.[0-9]+)+')
+def get_sec_num_new(ori, from_head = False):
+    result = pattern.search(ori)
+    if result is None:
+        return None
+    else:
+        return result.group(0)
     
 def get_sec_num(ori):
     '''
     get section number:   '23.1 haha' -> '23.1'
+    warning: this is deprecated, and it only detect from the head
+            of strings!!!
     '''
     ori = ori.strip()
     flag = False  # a flag status for pattern detect
@@ -44,7 +57,11 @@ def get_sec_num(ori):
                 continue
             else:  # a normal char
                 if flag:
-                    return ori[:char_index+1]
+                    result = ori[:char_index+1]
+                    if result.split(".")[1].isdigit():
+                        return ori[:char_index+1]
+                    else:
+                        return None
                 else: 
                     break
     return None
