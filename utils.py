@@ -14,16 +14,16 @@ def find_by_regex(regex, string, from_head=False):
 def get_style_name(style):
     return str(style).split("\'")[1]
 
-
 def replace_para_text(para, source, target):
     '''
     替换para的字体，但不修改字体（取最后一个run）
     '''
-    # method below may break style!
-#     para.text = str(para.text).replace(source, target)
+    # directly replacing will break style!
+    # gen a result first
     para_text = str(para.text).replace(source, target)
     for run in para.runs:
         run.text = ''
+    # place this result text in the first bucket(*runs*)
     para.runs[0].text = para_text
     
 pattern = re.compile(r'[0-9]+(\.[0-9]+)+')
