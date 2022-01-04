@@ -28,6 +28,9 @@ def replace_para_text(para, source, target):
     
 pattern = re.compile(r'[0-9]+(\.[0-9]+)+')
 def get_sec_num_new(ori, from_head = False):
+    '''
+    通过正则从ori里提取如0.0的字符串【仅一个】
+    '''
     result = None
     if from_head:
         result = pattern.match(ori)
@@ -38,6 +41,15 @@ def get_sec_num_new(ori, from_head = False):
     else:
         return result.group(0)
 
+def get_sec_num_iter(ori):
+    '''
+    在ori里搜索所有的sec_num
+    返回一个iter
+    '''
+    it = re.finditer(pattern, ori) 
+    return it
+    
+    
 # deprecated
 def get_sec_num(ori):
     '''
