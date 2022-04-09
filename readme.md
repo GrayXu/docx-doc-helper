@@ -1,8 +1,10 @@
-# SC25-doc-fucker
+# docx-doc-helper
 
-Do u think VBA is not designed for human?  
+VBA and Word are not appropriate for maintain huge documents. This repo provides some high-level utils based on [*python-docx*](https://github.com/python-openxml/python-docx) for docx files.
 
-This repo provides lots of high-level utils based on [*python-docx*](https://github.com/python-openxml/python-docx) to docx files. And it's freaking faster than VBA!
+warning: Those codes are built for maintaining GB/T documents specifically. And they are not well-tested, so check before usage.
+
+## detail
 
 file | feature
 | - | - |
@@ -14,11 +16,10 @@ change_sec_num.ipynb | change section number (1.1 -> 2.1)
 detect_replaceable_by_xlsx.ipynb | detect for replace_by_xlsx.ipynb  
 replace_by_xlsx.ipynb | replace the text matched only once by a given .xlsx file
 sec_title_style.ipynb | auto-set section title's style based on its level
+utils.py | python-docx utils
+table_para_style.ipynb | set specific paragraphs to same style
 
-check details in header comments of \*.py files.
-
-warning: those codes are not well-tested, so check check and check.
 
 ## dependency
 
-`pip install python-docx csv`
+`pip3 install python-docx csv xlrd=1.2.0`
