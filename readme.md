@@ -1,6 +1,6 @@
 # docx-doc-helper
 
-VBA and Word are not appropriate for maintain huge documents. This repo provides some high-level utils based on [*python-docx*](https://github.com/python-openxml/python-docx) for docx files.
+VBA and Word are not appropriate for huge documents. This repo provides some high-level utils based on [*python-docx*](https://github.com/python-openxml/python-docx) for docx files.
 
 warning: Those codes are built for maintaining GB/T documents specifically. And they are not well-tested, so check before usage.
 
